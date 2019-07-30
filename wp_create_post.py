@@ -43,10 +43,17 @@ class wp_create_post(unittest.TestCase):
         # 发布文章
         self.dr.find_element_by_css_selector("#publish").click()
 
-        # 断言
+        # 断言1: 验证新创建的文章是否出现在所有文章列表  
+        self.dr.find_element_by_css_selector("li.wp-first-item.current > a").click()
+        new_post_all = self.dr.find_element_by_css_selector(
+            "tbody#the-list >tr:nth-of-type(1) >td >strong>a").text
+        self.assertTrue(new_post_all == title)
+        time.sleep(10)
+
+        # 断言2: 验证新创建的文章是否出现在首页
         self.dr.find_element_by_css_selector("#wp-admin-bar-site-name >a").click()
-        new_post = self.dr.find_element_by_css_selector(".entry-title").text
-        self.assertTrue(new_post == title)
+        new_post_home = self.dr.find_element_by_css_selector(".entry-title").text
+        self.assertTrue(new_post_home == title)
 
 
 if __name__ == '__main__':
