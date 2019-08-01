@@ -19,7 +19,7 @@ class wp_create_post(unittest.TestCase):
         self.dr.find_element_by_css_selector("#wp-submit").click()
 
     def test_create_post(self):
-        self.login(username='1940770824@qq.com', password='Welcome@pwc01')
+        self.login(username='1940770824@qq.com', password='Summer@2019')
 
         # 定位新建文章的元素
         create_new_post = self.dr.find_element_by_css_selector("#wp-admin-bar-new-content")
@@ -34,7 +34,6 @@ class wp_create_post(unittest.TestCase):
 
         # 填写文章标题和内容
         title = content = time.strftime("%Y%m%d%H%M%S")
-
         self.dr.find_element_by_css_selector("#title").send_keys(title)
         js = "document.getElementById('content_ifr').contentWindow.document.body.innerHTML = '{}'"
         res = js.format(content)
@@ -46,7 +45,7 @@ class wp_create_post(unittest.TestCase):
         # 断言1: 验证新创建的文章是否出现在所有文章列表  
         self.dr.find_element_by_css_selector("li.wp-first-item.current > a").click()
         new_post_all = self.dr.find_element_by_css_selector(
-            "tbody#the-list >tr:nth-of-type(1) >td >strong>a").text
+            "tbody#the-list >tr:nth-of-type(1) strong>a").text
         self.assertTrue(new_post_all == title)
         time.sleep(10)
 
