@@ -47,7 +47,6 @@ class wp_create_post(unittest.TestCase):
         new_post_all = self.dr.find_element_by_css_selector(
             "tbody#the-list >tr:nth-of-type(1) strong>a").text
         self.assertTrue(new_post_all == title)
-        time.sleep(10)
 
         # 断言2: 验证新创建的文章是否出现在首页
         self.dr.find_element_by_css_selector("#wp-admin-bar-site-name >a").click()
