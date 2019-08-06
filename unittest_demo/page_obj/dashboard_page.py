@@ -10,7 +10,7 @@ class DashboardPage(BasePage):
 
     def greeting_link(self):
         return WebDriverWait(self.dr, 5).until(
-            EC.visibility_of(self.dr.find_element_by_css_selector("#wpc-admin-bar-my-account > a > span")))
+            EC.visibility_of(self.dr.find_element_by_css_selector("#wp-admin-bar-my-account")))
 
     def click_create_new_post(self):
         create_icon = self.dr.find_element_by_css_selector("#wp-admin-bar-new-content")
